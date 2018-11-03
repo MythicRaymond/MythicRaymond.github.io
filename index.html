@@ -44,7 +44,94 @@
                 margin-right: 10px;
                 padding: 6px;
             }
-
+            .myButton {
+            	background-color:#44c767;
+             	-moz-border-radius:28px;
+            	-webkit-border-radius:28px;
+             	border-radius:28px;
+             	border:1px solid #18ab29;
+            	display:inline-block;
+            	cursor:pointer;
+             	color:#ffffff;
+            	font-family:Arial;
+             	font-size:17px;
+            	padding:1px 21px;
+              	text-decoration:none;
+             	text-shadow:0px 1px 0px #2f6627;
+            }
+            .myButton:hover {
+            	background-color:#5cbf2a;
+            }
+            .myButton:active {
+            	position:relative;
+            	top:1px;
+            }
+            .yourButton {
+            	background-color:blue;
+             	-moz-border-radius:28px;
+            	-webkit-border-radius:28px;
+             	border-radius:28px;
+             	border:1px solid #18ab29;
+            	display:inline-block;
+            	cursor:pointer;
+             	color:#ffff;
+            	font-family:Arial;
+             	font-size:17px;
+            	padding:1px 21px;
+              	text-decoration:none;
+             	text-shadow:0px 1px 0px #2f6627;
+            }
+            .yourButton:hover {
+            	background-color:#5cbf2a;
+            }
+            .yourButton:active {
+            	position:relative;
+            	top:1px;
+            }
+            .MyButton {
+            	background-color:red;
+             	-moz-border-radius:28px;
+            	-webkit-border-radius:28px;
+             	border-radius:28px;
+             	border:1px solid #18ab29;
+            	display:inline-block;
+            	cursor:pointer;
+             	color:#ffff;
+            	font-family:Arial;
+             	font-size:17px;
+            	padding:1px 21px;
+              	text-decoration:none;
+             	text-shadow:0px 1px 0px #2f6627;
+            }
+            .MyButton:hover {
+            	background-color:#5cbf2a;
+            }
+            .MyButton:active {
+            	position:relative;
+            	top:1px;
+            }
+            .YourButton {
+            	background-color:rgb(255, 213, 0);
+             	-moz-border-radius:28px;
+            	-webkit-border-radius:28px;
+             	border-radius:28px;
+             	border:1px solid #18ab29;
+            	display:inline-block;
+            	cursor:pointer;
+             	color:#ffff;
+            	font-family:Arial;
+             	font-size:17px;
+            	padding:1px 21px;
+              	text-decoration:none;
+             	text-shadow:0px 1px 0px #2f6627;
+            }
+            .YourButton:hover {
+            	background-color:#5cbf2a;
+            }
+            .YourButton:active {
+            	position:relative;
+            	top:1px;
+            }
         </style>
         <body>
             <h1 id="Welcome">Welcome to SPCC Academy!</h1> 
@@ -64,10 +151,10 @@
                 <p>||| This website, Khan Academy-based, was built by a dedicated html code user and programmer in Khan Academy named Raymond. A long-term builder of his GitHub website, <a href = "https://mythicraymond.github.io">SPCC Academy</a>, he also visions a future of his website flourishing with clean-cut html code (as he is still learning html......) <br> <br>And that Raymond, is me. </p>
                 </div>
             <h2 id="Role_when_joining"><i>Firstly, how would you like to join SPCC Academy?</i></h2>
-            <button class="Learner">Learner</button>
-            <button class="Parent">Parent</button>
-            <button class="Teacher">Teacher</button>
-            <button class="Socially">Socially</button>
+            <br><a href="#" class="myButton">Learner</a>
+            <a href="#" class="yourButton">Parent</a>
+            <a href="#" class="MyButton">Teacher</a>
+            <a href="#" class="YourButton">Socially</a>
             <h2><em>Next, would you like to donate Khan Academy energy points to strengthen our webpage, making it even enjoyable and contributive?</em></h2>
             <button class="Learner">Yes!</button>
             <button class="Teacher">Not really...</button>
@@ -88,7 +175,10 @@
             <label for="from">Password</label>
             <br />
             <textarea name="message" id="message" style="height: 20px; width: 300px;" onclick="this.value=''">Enter text here...</textarea>
-                <br><button>Log In</button><br />
+            <br><button>Log In</button><br />
+
+
+
             </p>
 
         <script>
@@ -96,3 +186,4 @@
     </script>
         </body>
     </html>
+
