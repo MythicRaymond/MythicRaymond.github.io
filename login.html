@@ -11,19 +11,27 @@
             }
     </style>
     <body>
-    <h1>Log In</h1>
-                <p>
-            <label for="from">Username</label>
-            <br />
-            <textarea name="message" id="message" style="height: 20px; width: 300px;" onclick="this.value=''">Enter text here...</textarea>
-            </p>
-            <p>
-            <label for="from">Password</label>
-            <br />
-            <textarea name="message" id="message" style="height: 20px; width: 300px;" onclick="this.value=''">Enter text here...</textarea>
-            <br><button>Log In</button><br />
-            </p>
-    
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Sign up</h1>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+{% endblock %}
 
     </body>
 </html>
