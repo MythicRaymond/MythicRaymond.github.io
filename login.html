@@ -11,27 +11,120 @@
             }
     </style>
     <body>
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="Login / Signup - Finished">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>login.html</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+script type='text/stache' id='app-view'>
+  {{#if(sessionPromise.value)}}
 
-{% block content %}
-  <h1>Sign up</h1>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
-{% endblock %}
+    <p class="welcome-message">
+      Welcome Someone.
+      <a href="javascript://" on:click="logOut()">log out</a>
+    </p>
+
+  {{else}}
+    {{#eq(page, "signup")}}
+
+      <form on:submit="signUp(scope.event)">
+        <h2>Sign Up</h2>
+
+        <input placeholder="email" value:to="email"/>
+
+        <input type='password'
+             placeholder="password" value:to="password"/>
+
+        <button>Sign Up</button>
+
+        <aside>
+          Have an account?
+          <a href="javascript://" on:click="gotoLogIn()">Log in</a>
+        </aside>
+      </form>
+
+    {{else}}
+          <form on:submit="logIn(scope.event)">
+        <h2>Log In</h2>
+
+        <input placeholder="email" value:to="email"/>
+
+        <input type='password'
+           placeholder="password" value:to="password"/>
+
+        <button>Log In</button>
+
+{{#if(logInError)}}
+          <div class="error">{{logInError.message}}</div>
+        {{/if}}
+
+        <aside>
+          Don't have an account?
+          <a href="javascript://" on:click="gotoSignUp()">Sign up</a>
+        </aside>
+      </form>
+
+    {{/eq}}
+  {{/if}}
+</script>
+
+  <script src="https://unpkg.com/can@4/dist/global/can.all.js"></script>
+<script>
+can.fixture("GET /api/session", function(req, response){
+  const session = localStorage.getItem("session");
+  if(localStorage.getItem("session")) {
+    response(JSON.parse(session))
+  } else {
+    response(
+        404,
+        { message: "No session"},
+        { },
+        "unauthorized")
+        }
+});
+can.fixture("POST /api/users", function(request, response){
+  const session = {
+    user: {email: request.data.email}
+  };
+  localStorage.setItem("user",JSON.stringify(request.data));
+  localStorage.setItem("session",JSON.stringify(session));
+  
+  return session.user;
+});
+can.fixture("DELETE /api/session", function(){
+  localStorage.removeItem("session");
+  return {};
+});
+
+can.fixture("POST /api/session", function(request, response){
+  const userData = localStorage.getItem("user");
+  if(userData) {
+    const user = JSON.parse(userData);
+    const requestUser = request.data.user;
+    if( user.email === requestUser.email &&
+      user.password === requestUser.password) {
+      return request.data;
+    } else {
+      response(
+        401,
+        { message: "Unauthorized"},
+        { },
+        "unauthorized")
+    }
+  }
+  response(
+        401,
+        { message: "Unauthorized"},
+        { },
+        "unauthorized");
+});
+</script>
+
 
     </body>
 </html>
